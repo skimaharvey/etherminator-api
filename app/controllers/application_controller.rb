@@ -8,13 +8,13 @@ class ApplicationController < ActionController::API
     end
 
     def token
-        auth_header.split(" ")[1]
+        @auth_header.split(" ")[1]
     end
 
     def authenticate
         if request.headers["Authorization"]
             begin
-                auth_header = request.headers["Authorization"]
+                @auth_header = request.headers["Authorization"]
                 decoded_token = JWT.decode(token, secret)
                 payload = decoded_token.first 
                 admin_id = payload["admin_id"]
