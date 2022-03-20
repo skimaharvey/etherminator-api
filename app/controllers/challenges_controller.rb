@@ -8,7 +8,7 @@ class ChallengesController < ApplicationController
     end
 
     def html_cleaner(html)
-        change_color = html.gsub("ffffff", "282C34").gsub("000000", "ffffff")
+        change_color = html.gsub("ffffff", "282C34").gsub("000000", "F5F5F5")
         doc = Nokogiri::HTML(change_color)
         #remove the line number on the left
         doc.search('.code_gutter', '#file_info').remove
@@ -19,10 +19,13 @@ class ChallengesController < ApplicationController
         @challenge = Challenge.new(
             title: params['title'], code: html_cleaner(params['code']), description: params['description'],
             difficulty: params['difficulty'], address: params['address'], author: params['author'],
-            author_github: params['author_github'], author_email: params['author_email']
+            author_github: params['author_github'], author_email: params['author_email'],
+            contract_abi: params['contract_abi'], setup_address: params['setup_address']
         )
 
         if @challenge.save
+            #have express api listen to setup contract events (instance creation & instance completed)
+            HTTParty.post('http://localhost:6000/new_level', query: {contractAddress: @challenge.setup_address, contractAbi: @challenge.contract_abi})
             render json: {message: 'new challenge saved'}
         else
             render json: {error: 'Try again later'}

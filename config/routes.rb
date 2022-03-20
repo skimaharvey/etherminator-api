@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   get '/challenges' => 'challenges#index'
   post '/create_challenge' => 'challenges#create'
+  post '/level_start' => 'users#level_start'
   post '/new_admin' => 'admins#create'
   post '/admin' => 'admins#login'
 end
