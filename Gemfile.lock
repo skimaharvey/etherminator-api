@@ -175,6 +175,7 @@ DEPENDENCIES
   debug
   figaro
   jwt (= 2.2.0)
+  nokogiri
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
