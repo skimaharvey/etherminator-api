@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/challenges' => 'challenges#index'
   post '/create_challenge' => 'challenges#create'
   post '/level_start' => 'users#level_start'
+  post '/level_end' => 'users#level_end'
   post '/new_admin' => 'admins#create'
   post '/admin' => 'admins#login'
 end

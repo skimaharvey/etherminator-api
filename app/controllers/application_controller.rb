@@ -3,6 +3,7 @@ require 'jwt'
 class ApplicationController < ActionController::API
     before_action :authenticate 
 
+
     def secret
         secret = ENV['SECRET_KEY_BASE'] || Rails.application.secrets.secret_key_base
     end
