@@ -5,7 +5,7 @@
 # pusher_secret: abdc3b896a0ffb85d373
 # stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
 # stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
-SECRET_KEY_BASE: "thisisapassword"
+SECRET_KEY: "thisisapassword"
 EXPRESS_API: "http://localhost:6000"
 #
 # production:

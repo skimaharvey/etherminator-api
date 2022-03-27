@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
 
 
     def secret
-        secret = ENV['SECRET_KEY_BASE'] || Rails.application.secrets.secret_key_base
+        secret = ENV['SECRET_KEY'] || Rails.application.secrets.secret_key_base
     end
 
     def token
