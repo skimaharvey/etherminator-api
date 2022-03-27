@@ -84,4 +84,4 @@ production:
   database: etherminator_api_production
   username: etherminator_api
   password: <%= ENV["ETHERMINATOR_API_DATABASE_PASSWORD"] %>
-  DATABASE_URL: <%= ENV["HEROKU_POSTGRESQL_WHITE_URL"] %>
+  DATABASE_URL: <%= ENV["DATABASE_URL"] %>
