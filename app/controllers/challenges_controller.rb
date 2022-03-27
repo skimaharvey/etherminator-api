@@ -17,8 +17,9 @@ class ChallengesController < ApplicationController
     end
 
     def html_cleaner(html)
-        change_color = html.gsub("ffffff", "282C34").gsub("000000", "F5F5F5")
-        doc = Nokogiri::HTML(change_color)
+
+        change_colors = html.gsub("ffffff", "282C34").gsub("000000", "F5F5F5")
+        doc = Nokogiri::HTML(change_colors)
         #remove the line number on the left
         doc.search('.code_gutter', '#file_info').remove
         doc
