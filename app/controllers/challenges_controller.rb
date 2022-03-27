@@ -35,7 +35,7 @@ class ChallengesController < ApplicationController
 
         if @challenge.save
             #have express api listen to setup contract events (instance creation & instance completed)
-            HTTParty.post('http://localhost:6000/new_level', query: {contractAddress: @challenge.setup_address, contractAbi: @challenge.contract_abi})
+            HTTParty.post("#{ENV["EXPRESS_API"]}/new_level", query: {contractAddress: @challenge.setup_address, contractAbi: @challenge.contract_abi})
             render json: {message: 'new challenge saved'}
         else
             render json: {error: 'Try again later'}
