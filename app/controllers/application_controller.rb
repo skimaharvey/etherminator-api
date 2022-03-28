@@ -48,5 +48,6 @@ class ApplicationController < ActionController::API
     def create_token(payload) 
         JWT.encode(payload, secret)
     end
+    
 
 end
