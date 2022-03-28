@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action  :authenticate, only: [:login]
+    skip_before_action  :authenticate_user, only: [:login]
     #new instance creation => remove level from finished levels
     def check_if_finished
         levels_finished = @user.levels_finished || []
@@ -40,8 +40,8 @@ class UsersController < ApplicationController
             levels_finished = @user.levels_finished 
             !levels_finished.include?(@setup_address) && levels_finished.push(@setup_address)
             if @user.update(levels_finished: levels_finished)
-                levels_started = @user.levels_started
-                @user.update(levels_started: levels_started.delete(@setup_address) || [])
+                levels_started = @user.levels_started - [@setup_address]
+                @user.update(levels_started: levels_started)
                 render json: {message: "Added to finished levels and removed from started levels"}
             end 
         else
@@ -52,14 +52,19 @@ class UsersController < ApplicationController
     def login 
         @user = User.find_by(address: params[:address].upcase) #had to upcase because cases where changing after saving in contract
         if @user
-            render json: {user: @user}
+            payload = {user_id: @user.id}
+            token = create_token(payload)
+            render json: {user: @user, token: token}
         else
             @user = User.new(address: params[:address].upcase) #had to upcase because cases where changing after saving in contract
             if @user.save 
-                render json: {user: @user}
+                payload = {user_id: @user.id}
+                token = create_token(payload)
+                render json: {user: @user, token: token}
             else
                 render json: {error: "Could not save new user"}
             end
         end
     end
 end
+

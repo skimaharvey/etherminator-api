@@ -1,7 +1,8 @@
 require 'nokogiri'
 
 class ChallengesController < ApplicationController
-    skip_before_action :authenticate, only: [:index, :abi]
+    skip_before_action :authenticate_user, only: [:index, :abi]
+    before_action :authenticate, only: [:create]
 
     def index
         render json: Challenge.all
@@ -35,7 +36,8 @@ class ChallengesController < ApplicationController
 
         if @challenge.save
             #have express api listen to setup contract events (instance creation & instance completed)
-            HTTParty.post("#{ENV["EXPRESS_API"]}/new_level", query: {contractAddress: @challenge.setup_address, contractAbi: @challenge.contract_abi})
+            #put api on hold now because listeners where not woring to well
+            # HTTParty.post("#{ENV["EXPRESS_API"]}/new_level", query: {contractAddress: @challenge.setup_address, contractAbi: @challenge.contract_abi})
             render json: {message: 'new challenge saved'}
         else
             render json: {error: 'Try again later'}
