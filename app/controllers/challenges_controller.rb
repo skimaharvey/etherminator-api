@@ -2,7 +2,7 @@ require 'nokogiri'
 
 class ChallengesController < ApplicationController
     before_action :authenticate
-    skip_before_action :authenticate_user, only: [:index, :abi]
+    skip_before_action :authenticate_user, only: [:index, :abi, :create]
     skip_before_action :authenticate, only: [:index, :abi]
     # before_action :authenticate, only: [:create]
 
