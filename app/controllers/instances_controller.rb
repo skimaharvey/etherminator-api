@@ -1,5 +1,5 @@
 class InstancesController < ApplicationController
-
+    skip_before_action :authenticate
     def find_instance 
         challenge_id = Challenge.find_by(address: params['setupAddress']).id
         instances = Instance.where(challenge_id: challenge_id, user_id: params["user_id"])
