@@ -1,6 +1,7 @@
 
 class AdminsController < ApplicationController
-
+    before_action :authenticate_user 
+    before_action :authenticate
     skip_before_action :authenticate, only: [:login]
 
  

@@ -1,8 +1,10 @@
 require 'nokogiri'
 
 class ChallengesController < ApplicationController
+    before_action :authenticate
     skip_before_action :authenticate_user, only: [:index, :abi]
-    before_action :authenticate, only: [:create]
+    skip_before_action :authenticate, only: [:index, :abi]
+    # before_action :authenticate, only: [:create]
 
     def index
         render json: Challenge.all
