@@ -33,7 +33,8 @@ class ChallengesController < ApplicationController
             title: params['title'], code: html_cleaner(params['code']), description: params['description'],
             difficulty: params['difficulty'], address: params['address'], author: params['author'],
             author_github: params['author_github'], author_email: params['author_email'],
-            contract_abi: params['contract_abi'], setup_address: params['setup_address'].upcase
+            contract_abi: params['contract_abi'], setup_address: params['setup_address'].upcase,
+            valueL: params['value']
         )
 
         if @challenge.save
