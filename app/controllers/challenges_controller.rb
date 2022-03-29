@@ -13,7 +13,7 @@ class ChallengesController < ApplicationController
     def abi
         contract = Challenge.find_by(setup_address: params["levelAddress"].upcase)
         if contract 
-            render json: {"abi": contract.contract_abi}
+            render json: {"abi": contract.contract_abi, "value": contract.value}
         else
             render json: {error: "Level address is not correct"}
         end
