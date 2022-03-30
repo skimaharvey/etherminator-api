@@ -34,7 +34,7 @@ class ChallengesController < ApplicationController
             difficulty: params['difficulty'], address: params['address'], author: params['author'],
             author_github: params['author_github'], author_email: params['author_email'],
             contract_abi: params['contract_abi'], setup_address: params['setup_address'].upcase,
-            valueL: params['value']
+            value: params['value'], verified_url: params["verifiedUrl"]
         )
 
         if @challenge.save
