@@ -25,7 +25,7 @@ class UsersController < ApplicationController
             #delete from finished level if new instance created
             check_if_finished
             #save instance 
-            Instance.create(user_id: @user.id, challenge_id: @challenge.id, address: params["instanceAddress"].upcase) #had to upcase because cases where changing after saving in contract
+            Instance.create(user_id: @user.id, challenge_id: @challenge.id, address: params["instanceAddress"]) #had to upcase because cases where changing after saving in contract
             render json: {message: "Level registered to user profile"}
         else
             render json: {error: "could not not find user associated to this address"}
