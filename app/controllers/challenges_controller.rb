@@ -35,6 +35,7 @@ class ChallengesController < ApplicationController
             author_github: params['author_github'], author_email: params['author_email'],
             contract_abi: params['contract_abi'], setup_address: params['setup_address'].upcase,
             value: params['value'], verified_url: params["verifiedUrl"], setup_code: html_cleaner(params["setup_code"])
+
         )
 
         if @challenge.save
