@@ -7,7 +7,7 @@ class ChallengesController < ApplicationController
     # before_action :authenticate, only: [:create]
 
     def index
-        render json: Challenge.all
+        render json: {challenges: Challenge.all, tags: Tag.all}
     end
 
     def abi
