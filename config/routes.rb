@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post '/admin' => 'admins#login'
 
   post '/find_instance' => 'instances#find_instance'
+
+  get '/tags' => 'tags#index'
 end
