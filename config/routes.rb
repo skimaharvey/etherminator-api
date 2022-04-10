@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   post '/find_instance' => 'instances#find_instance'
 
   get '/tags' => 'tags#index'
+
+  get '/projects' => 'projects#index'
 end
